@@ -31,35 +31,35 @@ class Position
   end
 
   def invalid?
-    @row.nil? || @col.nil?
+    row.nil? || col.nil?
   end
 
   def out_of_board?
-    !((0..7).cover?(@row) && (0..7).cover?(@col))
+    !((0..7).cover?(row) && (0..7).cover?(col))
   end
 
   def stone_color(board)
     return nil if out_of_board?
 
-    board[@row][@col]
+    board[row][col]
   end
 
   def to_cell_ref
     return '盤面外' if out_of_board?
 
-    "#{COL[@col]}#{ROW[@row]}"
+    "#{COL[col]}#{ROW[row]}"
   end
 
   def next_position(direction)
     case direction
-    when TOP_LEFT     then Position.new(@row - 1, @col - 1)
-    when TOP          then Position.new(@row - 1, @col)
-    when TOP_RIGHT    then Position.new(@row - 1, @col + 1)
-    when LEFT         then Position.new(@row,     @col - 1)
-    when RIGHT        then Position.new(@row,     @col + 1)
-    when BOTTOM_LEFT  then Position.new(@row + 1, @col - 1)
-    when BOTTOM       then Position.new(@row + 1, @col)
-    when BOTTOM_RIGHT then Position.new(@row + 1, @col + 1)
+    when TOP_LEFT     then Position.new(row - 1, col - 1)
+    when TOP          then Position.new(row - 1, col)
+    when TOP_RIGHT    then Position.new(row - 1, col + 1)
+    when LEFT         then Position.new(row,     col - 1)
+    when RIGHT        then Position.new(row,     col + 1)
+    when BOTTOM_LEFT  then Position.new(row + 1, col - 1)
+    when BOTTOM       then Position.new(row + 1, col)
+    when BOTTOM_RIGHT then Position.new(row + 1, col + 1)
     else raise 'Unknown direction'
     end
   end
